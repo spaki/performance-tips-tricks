@@ -26,6 +26,12 @@ namespace PerformanceTipsTricks
             Benchmark(AddToList, nameof(AddToList), 10);
             Benchmark(AddToListOptimized, nameof(AddToListOptimized), 10);
 
+            Benchmark(SumArrayValueWithFor, nameof(SumArrayValueWithFor), 1000000);
+            Benchmark(SumArrayValueWithForeach, nameof(SumArrayValueWithForeach), 1000000);
+
+            Benchmark(CompareSwitchAndDictionary1, nameof(CompareSwitchAndDictionary1), 1000000);
+            Benchmark(CompareSwitchAndDictionary2, nameof(CompareSwitchAndDictionary2), 1000000);
+
             Console.WriteLine();
             Console.WriteLine("end...");
             Console.ReadLine();
@@ -132,7 +138,6 @@ namespace PerformanceTipsTricks
                         result++;
         }
 
-
         static void AddToList()
         {
             var items = new int[100000000];
@@ -147,6 +152,55 @@ namespace PerformanceTipsTricks
             var items = new int[100000000];
             var list = new List<int>();
             list.AddRange(items);
+        }
+
+        static void SumArrayValueWithFor()
+        {
+            var items = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var sum = 0;
+
+            for (var i = 0; i < items.Length; i++)
+            {
+                sum += items[i];
+            }
+        }
+
+        static void SumArrayValueWithForeach()
+        {
+            var items = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var sum = 0;
+
+           foreach(var item in items)
+           {
+                sum += item;
+           }
+        }
+
+        static void CompareSwitchAndDictionary1()
+        {
+            var type = "A";
+            var value = string.Empty;
+
+            switch (type)
+            {
+                case "A":
+                    value = "I'm A";
+                    break;
+                case "B":
+                    value = "I'm B";
+                    break;
+            }
+        }
+
+        static void CompareSwitchAndDictionary2()
+        {
+            var dictionary = new Dictionary<string, string>()
+            {
+                { "A", "I'm A" },
+                { "B", "I'm B" },
+            };
+
+            var value = dictionary["A"];
         }
     }
 }
